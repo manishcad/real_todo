@@ -26,7 +26,7 @@ SECRET_KEY = 'xir#aa-1e^ws^&vowv%cy8g3cvmt)!y=pbz6)1j$842!qkqhy6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['realtodos.herokuapp.com, '127.0.0.1']
+ALLOWED_HOSTS = ['realtodos.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
