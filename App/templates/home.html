@@ -1,0 +1,78 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '../../static/home_style.css' %}">
+    <title>Todoist | Create Todos</title>
+</head>
+<body>
+    <div class="row" id="first_row">
+       
+            <div class="col-10 col-md-6 first_col" style="background-color: ;">
+                <div class="title">
+                    <h2>Hello,{{request.user}}</h2>
+                </div>
+            <form method="POST" action="" style="display: flex; flex-direction: column; align-items: center;">
+                {% csrf_token %}
+                <div class="input">
+                    {{form.title}}
+                </div>
+                <div class="select">
+                   {{form.status}}
+                </div>
+                <div class="button_div">
+                    <button class="btn btn-danger btn-lg" type="submit">Add Task</button>
+                </div>
+            </form>
+            </div>
+        
+    </div>
+
+<div class="row" style="text-align: center;">
+    {% if messages %}
+{% for message in messages %}
+    <p style="font-weight: bold; color: rgb(255, 255, 255);">{{message}}</p>
+{% endfor %}
+{% endif %}
+</div>
+<div class="logout_div" style="background-color: ; display: flex; justify-content: center;">
+<a style="font-size: 20px; list-style: none; " href="{% url 'logout' %}"><button type="button" class="btn btn-primary">Logout</button></a>
+</div>
+<div class="row pt-4" id="row_2">
+    <div class="col-10 col-md-7 table_col">
+        <table class="table" style="background-color: rgb(174, 38, 201); position: absolute; margin-left: 30px">
+            <thead>
+              <tr>
+                
+                <th scope="col" style="background-color: ; padding: 10 30px;">TASK</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">UPDATE</th>
+                <th scope="col">DELETE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+               {% for item in todo %}
+                {% if item.status == "Complete" %}
+                    <td style="background-color: ;"><strike><p style="font-weight: bold; font-size: 28px;" >{{item.title}}</p></strike></td>
+                    {% else %}
+                    <td style="background-color: ;"><p style="font-weight: bold; font-size: 28px;" >{{item.title}}</p></td>
+                {% endif %}
+                <td>{{item.status}}</td>
+                <td><a href="{% url 'update' item.id %}"><button class="btn btn-primary">Update</button></a></td>
+                <td><a href="{% url 'delete' item.id %}"><button class="btn btn-danger">Delete</button></a></td>
+              </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

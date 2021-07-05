@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '../../static/register.css' %}">
+    <title>Sign Up</title>
+</head>
+<body style="background:linear-gradient(to left bottom,rgba(255, 0, 131, 1),rgba(255, 103, 0, 1))">
+
+<div class="row row-1">
+    <div class="col-9 col-sm-7 " style="background:linear-gradient(to left bottom,rgba(49, 97, 161, 0.8),rgba(40, 33, 133, 0.2));border-radius: 10px;">
+        <div class="container my_container" >
+            <div class="title" >
+                <p style="font-weight: bold; color: rgb(204, 224, 18); font-size: 20px"><u>Register Here</u></p>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="username-input" >
+                {{form.username}}
+                </div>
+                <div class="email-input" >
+                    {{form.email}}
+                </div>
+                <div class="password1-input" >
+                    {{form.password1}}
+                </div>
+                <div class="password2-input" >
+                    {{form.password2}}
+                </div>
+                {% if form.errors %}
+                <div class="alert" style="background-color: red; margin: 0; padding: 0;">
+                    {% for i in form %}
+                    <p style="color: rgb(207, 31, 55); padding-top: 5px;">{{i.errors}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="sumbit_button" style="background-color: ; margin-top: 20px;" >
+                    <button type="sumbit" class="btn btn-info " style="width: 50%;">Register</button>
+                </div> 
+                <a href="{% url 'login' %}"><p style="color:black; padding-top: 15px;">Login ?</p></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
